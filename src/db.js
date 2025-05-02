@@ -1,19 +1,21 @@
 import { PGlite } from "@electric-sql/pglite";
-import { v4 as uuidv4 } from "uuid";
 
-let dbInstance = null;
-let dbInitialized = false;
+// Singleton database instance
+let db;
 
 export const initDB = async () => {
-  if (dbInitialized) return dbInstance;
-
-  const dbName = `patient-db-${window.location.origin}`;
+  if (db) return db;
   
-  dbInstance = new PGlite(`idb://${dbName}`, {
-    relaxedDurability: true,
+  // Initialize with proper IndexedDB connection
+  db = new PGlite("idb://patient-db", {
+    relaxedDurability: true // Better performance for this use case
   });
 
-  await dbInstance.query(`
+  // Wait for connection to be ready
+  await db.waitReady;
+  
+  // Create tables if they don't exist
+  await db.exec(`
     CREATE TABLE IF NOT EXISTS patients (
       id TEXT PRIMARY KEY,
       first_name TEXT NOT NULL,
@@ -28,13 +30,24 @@ export const initDB = async () => {
     );
   `);
 
-  dbInitialized = true;
-  return dbInstance;
+  return db;
 };
 
 export const getDB = () => {
-  if (!dbInstance) {
-    throw new Error("Database not initialized. Call initDB() first.");
+  if (!db) throw new Error("Database not initialized");
+  return db;
+};
+
+// Add this for clean transactions
+export const transaction = async (callback) => {
+  const db = getDB();
+  await db.exec("BEGIN");
+  try {
+    const result = await callback(db);
+    await db.exec("COMMIT");
+    return result;
+  } catch (err) {
+    await db.exec("ROLLBACK");
+    throw err;
   }
-  return dbInstance;
 };
