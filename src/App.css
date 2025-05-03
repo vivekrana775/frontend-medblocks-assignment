@@ -33,6 +33,7 @@ h1 {
   font-size: 16px;
   margin-right: 5px;
   border-radius: 4px 4px 0 0;
+  background-color: #181917;
 }
 
 .tabs button.active {
@@ -128,4 +129,85 @@ table th {
   border-radius: 4px;
   margin: 10px 0;
   border: 1px solid #f5b7b1;
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: #f0f0f0;
+  --card-bg: #2d2d2d;
+  --border-color: #444;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .app {
+    padding: 10px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+  }
+}
+
+/* Patient profile view */
+.patient-profile {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 20px;
+}
+
+.patient-photo {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Statistics dashboard */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.patient-result {
+  animation: fadeIn 0.3s ease-out;
+}
+
+:root {
+  --primary-color: #3498db;
+  --bg-color: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --text-color: #333333;
+  --text-secondary: #666666;
+  --card-bg: #ffffff;
+  --border-color: #dddddd;
+}
+
+[data-theme="dark"] {
+  --primary-color: #5dade2;
+  --bg-color: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --text-color: #f0f0f0;
+  --text-secondary: #bbbbbb;
+  --card-bg: #2d2d2d;
+  --border-color: #444444;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
