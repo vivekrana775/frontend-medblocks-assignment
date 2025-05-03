@@ -10,6 +10,7 @@ function App() {
   const [activeTab, setActiveTab] = useState('register');
   const [query, setQuery] = useState('SELECT * FROM patients LIMIT 10');
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -79,6 +80,7 @@ function App() {
 
       await refreshPatients();
       setError(null);
+      setSuccess('Patient registered successfully!');
     } catch (err) {
       setError(`Patient registration failed: ${err.message}`);
     }
@@ -92,6 +94,7 @@ function App() {
     }));
 
     if (error) setError(null);
+    if (success) setSuccess(null);
   };
 
   const executeQuery = async () => {
@@ -202,7 +205,9 @@ function App() {
   return (
     <div className="app">
       <h1>Patient Registration System</h1>
+
       {error && <div className="error">{error}</div>}
+      {success && <div className="success">{success}</div>}
 
       <div className="tabs">
         {['register', 'view', 'query'].map(tab => (

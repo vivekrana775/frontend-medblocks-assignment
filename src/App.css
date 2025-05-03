@@ -231,3 +231,50 @@ table th {
   --card-bg: #2d2d2d;
   --border-color: #444444;
 }
+
+.app {
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.tabs button {
+  margin-right: 10px;
+}
+
+.tabs .active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.error {
+  background-color: #f8d7da;
+  color: #842029;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.success {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
