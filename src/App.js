@@ -8,7 +8,7 @@ function App() {
   const [patients, setPatients] = useState([]);
   const [queryResult, setQueryResult] = useState(null);
   const [activeTab, setActiveTab] = useState('register');
-  const [query, setQuery] = useState('SELECT * FROM patients LIMIT 10');
+  const [query, setQuery] = useState('SELECT * FROM patients');
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
@@ -38,7 +38,7 @@ function App() {
   const refreshPatients = async () => {
     try {
       const db = getDB();
-      const result = await db.query('SELECT * FROM patients ORDER BY created_at DESC LIMIT 10');
+      const result = await db.query('SELECT * FROM patients ORDER BY created_at DESC');
       setPatients(result.rows);
     } catch (err) {
       setError(`Failed to load patients: ${err.message}`);
