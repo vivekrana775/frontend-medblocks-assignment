@@ -1,84 +1,105 @@
+/* Base Styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Container */
 .app {
   max-width: 1000px;
   margin: 0 auto;
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-bg);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Typography */
 h1 {
-  color: #2c3e50;
+  color: var(--primary-color);
   text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.2rem;
 }
 
+/* Tabs */
 .tabs {
   display: flex;
   margin-bottom: 20px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 2px solid var(--border-color);
 }
 
 .tabs button {
-  padding: 10px 20px;
-  background: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: transparent;
   border: none;
   cursor: pointer;
-  font-size: 16px;
-  margin-right: 5px;
-  border-radius: 4px 4px 0 0;
-  background-color: #181917;
+  border-radius: 6px 6px 0 0;
+  color: var(--text-secondary);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.tabs button:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-color);
 }
 
 .tabs button.active {
-  background-color: #3498db;
-  color: white;
+  background-color: var(--primary-color);
+  color: #fff;
 }
 
+/* Tab Content */
 .tab-content {
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 0 0 4px 4px;
+  padding: 25px;
+  border: 1px solid var(--border-color);
+  border-radius: 0 0 8px 8px;
+  background-color: var(--bg-secondary);
 }
 
+/* Forms */
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-secondary);
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
   width: 100%;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
   box-sizing: border-box;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
+/* Buttons */
 button {
-  background-color: #3498db;
+  background-color: var(--primary-color);
   color: white;
   border: none;
-  padding: 10px 15px;
-  border-radius: 4px;
+  padding: 12px 20px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
+  transition: background 0.2s ease;
 }
 
 button:hover {
-  background-color: #2980b9;
+  background-color: #2471a3;
 }
 
 button:disabled {
@@ -86,35 +107,44 @@ button:disabled {
   cursor: not-allowed;
 }
 
+/* Table */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
 
-table th, table td {
-  border: 1px solid #ddd;
-  padding: 8px;
+table th,
+table td {
+  border: 1px solid var(--border-color);
+  padding: 10px;
   text-align: left;
 }
 
 table th {
-  background-color: #f2f2f2;
+  background-color: var(--bg-secondary);
+  font-weight: 600;
 }
 
+/* Query Section */
 .query-container textarea {
   width: 100%;
   font-family: monospace;
+  padding: 10px;
   margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .query-results {
   margin-top: 20px;
   max-height: 400px;
   overflow: auto;
-  border: 1px solid #ddd;
-  padding: 10px;
-  background-color: #f9f9f9;
+  border: 1px solid var(--border-color);
+  padding: 15px;
+  background-color: var(--bg-secondary);
 }
 
 .query-results pre {
@@ -122,35 +152,17 @@ table th {
   white-space: pre-wrap;
 }
 
+/* Error Message */
 .error {
   color: #e74c3c;
   background-color: #fadbd8;
-  padding: 10px;
-  border-radius: 4px;
-  margin: 10px 0;
+  padding: 12px;
+  border-radius: 6px;
   border: 1px solid #f5b7b1;
+  font-weight: 500;
 }
 
-/* Dark mode */
-[data-theme="dark"] {
-  --bg-color: #1a1a1a;
-  --text-color: #f0f0f0;
-  --card-bg: #2d2d2d;
-  --border-color: #444;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .app {
-    padding: 10px;
-  }
-  
-  .form-row {
-    flex-direction: column;
-  }
-}
-
-/* Patient profile view */
+/* Patient Profile */
 .patient-profile {
   display: grid;
   grid-template-columns: 200px 1fr;
@@ -162,30 +174,43 @@ table th {
   overflow: hidden;
 }
 
-/* Statistics dashboard */
+/* Dashboard Stats */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
 }
 
 .stat-card {
   background: var(--card-bg);
-  padding: 15px;
-  border-radius: 8px;
+  padding: 20px;
+  border-radius: 10px;
   text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .patient-result {
-  animation: fadeIn 0.3s ease-out;
+  animation: fadeIn 0.4s ease-in-out;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app {
+    padding: 15px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+}
+
+/* Light Theme */
 :root {
   --primary-color: #3498db;
   --bg-color: #ffffff;
@@ -196,6 +221,7 @@ table th {
   --border-color: #dddddd;
 }
 
+/* Dark Theme */
 [data-theme="dark"] {
   --primary-color: #5dade2;
   --bg-color: #1a1a1a;
@@ -204,10 +230,4 @@ table th {
   --text-secondary: #bbbbbb;
   --card-bg: #2d2d2d;
   --border-color: #444444;
-}
-
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
 }
